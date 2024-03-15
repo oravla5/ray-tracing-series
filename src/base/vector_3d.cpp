@@ -30,21 +30,6 @@ Vector3d Vector3d::unit() const
     return (*this)/norm();
 }
 
-Vector3d operator+(double s, const Vector3d &rhs) 
-{
-    return Vector3d(s + rhs.x(), s + rhs.y(), s + rhs.z());
-}
-
-Vector3d operator-(double s, const Vector3d &rhs) 
-{
-    return Vector3d(s - rhs.x(), s - rhs.y(), s - rhs.z());
-}
-
-Vector3d operator*(double s, const Vector3d &rhs) 
-{
-    return Vector3d(s * rhs.x(), s * rhs.y(), s * rhs.z());
-}
-
 std::ostream& operator<<(std::ostream &out, const Vector3d &v) 
 {
     return out << v.x() << ' ' << v.y() << ' ' << v.z();

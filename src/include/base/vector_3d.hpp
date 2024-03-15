@@ -9,6 +9,7 @@ class Vector3d : public Array3d {
 public:
     Vector3d() : Array3d() {}
     Vector3d(double x, double y, double z) : Array3d(x, y, z) {}
+    Vector3d(const Vector3d &vec) : Vector3d(vec[0], vec[1], vec[2]) {}
     Vector3d(const Array3d &array3d) : Array3d(array3d) {}
 
     inline double x() const { return (*this)[0]; }
@@ -21,10 +22,6 @@ public:
 
     friend double dot(const Vector3d &lhs, const Vector3d &rhs);
     friend Vector3d cross(const Vector3d &lhs, const Vector3d &rhs);
-
-    friend Vector3d operator+(double s, const Vector3d &rhs);
-    friend Vector3d operator-(double s, const Vector3d &rhs);
-    friend Vector3d operator*(double s, const Vector3d &rhs);
 
     friend std::ostream& operator<<(std::ostream &out, const Vector3d &v);
 };
