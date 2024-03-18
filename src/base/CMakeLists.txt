@@ -1,1 +1,1 @@
-add_library(rayBaseLib color.cpp vector_3d.cpp ray.cpp sphere.cpp)
+add_library(rayBaseLib color.cpp vector_3d.cpp ray.cpp)

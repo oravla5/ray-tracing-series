@@ -1,33 +1,19 @@
 #include <iostream>
 
-#include "base/array_3d.hpp"
+#include "base/base.hpp"
 #include "base/color.hpp"
-#include "base/ray.hpp"
+
+#include "hittable/hittable.hpp"
+#include "hittable/hittable_list.hpp"
+#include "hittable/sphere.hpp"
 
 using namespace raytrc;
 
-double intersectsSphere(const Vector3d &sphereCenter, double sphereRadius, const Ray &ray) {
-    // Compute coefficients of the quadratic equation
-    Vector3d vC2O = ray.origin() - sphereCenter;
-    double a = ray.direction().normSquared();
-    double bHalf = dot(ray.direction(), vC2O);
-    double c = vC2O.normSquared() - sphereRadius * sphereRadius;
-
-    // Check discriminant of quadratic equation
-    double discriminant = bHalf * bHalf - a * c;
-    if (discriminant < 0) {
-        return -1.0;
-    } else {
-        return (-bHalf - std::sqrt(discriminant)) / a;
-    }
-}
-
-Color getRayColor(const Ray &ray) {
-    auto t = intersectsSphere(Vector3d(0, 0, -1), 0.5, ray);
-    if (t > 0.0) {
-        Vector3d normal = Vector3d(ray.at(t) - Vector3d(0, 0, -1)).unit(); 
-
-        return 0.5 * Color{normal.x() + 1, normal.y() + 1, normal.z() + 1};
+Color getRayColor(const Ray &ray, const Hittable &world)
+{
+    HitResult res;
+    if (world.hit(ray, Range{0, INFNTY}, res)) {
+        return 0.5 * (res.normal + Color{1, 1, 1});
     }
 
     Vector3d unitVec = ray.direction().unit();
@@ -43,6 +29,12 @@ int main() {
     // Compute image height and ensure is at least 1
     int imgHeight = static_cast<int>(imgWidth / ar);
     imgHeight = (imgHeight < 1) ? 1 : imgHeight;
+
+    // World
+    HittableList world;
+
+    world.add(std::make_shared<Sphere>(Vector3d(0, 0, -1), 0.5));
+    world.add(std::make_shared<Sphere>(Vector3d(0, -100.5, -1), 100));
 
     // Camera
     double focalLength = 1.0;
@@ -73,7 +65,7 @@ int main() {
             Vector3d pxl = originPxl + (i * uVwprtDelta) + (j * vVwprtDelta);
             Vector3d rayDirection = pxl - cameraCenter;
             Ray ray(cameraCenter, rayDirection);
-            Color pxlColor = getRayColor(ray);
+            Color pxlColor = getRayColor(ray, world);
             std::cout << pxlColor;
         }
     }

@@ -1,7 +1,9 @@
-#ifndef INCLUDE_BASE_HITTABLE_HPP
-#define INCLUDE_BASE_HITTABLE_HPP
+#ifndef INCLUDE_HITTABLE_HITTABLE_HPP
+#define INCLUDE_HITTABLE_HITTABLE_HPP
 
-#include "base/ray.hpp"
+#include <array>
+
+#include "base/base.hpp"
 
 namespace raytrc {
 
@@ -25,12 +27,12 @@ class Hittable {
 public:
     virtual ~Hittable() = default;
 
-    virtual bool hit(const Ray &ray, const double tRange[2], HitResult &res) const = 0;
+    virtual bool hit(const Ray &ray, const Range &hitRange, HitResult &res) const = 0;
 
 protected:
-    inline bool checkHitRange(const double hitRange[2], double t) const
+    inline bool checkHitRange(const Range &hitRange, double t) const
     {
-        return t <= hitRange[1] && t >= hitRange[0];
+        return hitRange.contains(t);
     }
 };
 } // namespace raytrc

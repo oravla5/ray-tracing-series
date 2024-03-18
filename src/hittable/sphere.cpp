@@ -1,7 +1,7 @@
-#include "base/sphere.hpp"
+#include "hittable/sphere.hpp"
 
 namespace raytrc {
-bool Sphere::hit(const Ray &ray, const double hitRange[2], HitResult &res) const 
+bool Sphere::hit(const Ray &ray, const Range &hitRange, HitResult &res) const 
 {
     // Compute coefficients of the quadratic equation
     Vector3d oc = ray.origin() - mCenter;
@@ -21,9 +21,9 @@ bool Sphere::hit(const Ray &ray, const double hitRange[2], HitResult &res) const
     // Compute the hit point
     double discriminantSqrt = std::sqrt(discriminant);
     double root = (-bHalf - discriminantSqrt)/a;
-    if (!checkHitRange(hitRange, root)) {
+    if (!hitRange.surrounds(root)) {
         root = (-bHalf + discriminantSqrt)/a;
-        if (!checkHitRange(hitRange, root)) {
+        if (!hitRange.surrounds(root)) {
             return false;
         }
     }

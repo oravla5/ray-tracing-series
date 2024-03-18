@@ -1,0 +1,5 @@
+#ifndef INCLUDE_RAYTRC_HPP
+#define INCLUDE_RAYTRC_HPP
+
+#include
+#endif // INCLUDE_RAYTRC_HPP
