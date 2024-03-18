@@ -1,7 +1,7 @@
 #ifndef INCLUDE_HITTABLE_SPHERE_HPP
 #define INCLUDE_HITTABLE_SPHERE_HPP
 
-#include "hittable/hittable.hpp"
+#include "scene/hittable.hpp"
 
 namespace raytrc {
 

@@ -3,9 +3,9 @@
 #include "base/base.hpp"
 #include "base/color.hpp"
 
-#include "hittable/hittable.hpp"
-#include "hittable/hittable_list.hpp"
-#include "hittable/sphere.hpp"
+#include "scene/hittable.hpp"
+#include "scene/hittable_list.hpp"
+#include "scene/sphere.hpp"
 
 using namespace raytrc;
 

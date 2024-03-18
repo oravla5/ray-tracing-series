@@ -1,0 +1,1 @@
+add_library(raySceneLib sphere.cpp hittable_list.cpp)

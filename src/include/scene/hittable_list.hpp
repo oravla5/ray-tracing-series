@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "hittable/hittable.hpp"
+#include "scene/hittable.hpp"
 
 namespace raytrc {
 

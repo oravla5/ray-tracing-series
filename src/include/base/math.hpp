@@ -3,6 +3,7 @@
 
 #include <limits>
 #include <math.h>
+#include <random>
 
 namespace raytrc {
 
@@ -13,6 +14,13 @@ const double PI = M_PI;
 inline double deg2rad(double deg)
 {
     return deg * PI / 180.0;
+}
+
+inline double getRandomDouble(double min = 0.0, double max = 1.0)
+{
+    static std::uniform_real_distribution<double> distribution(min, max);
+    static std::mt19937 generator;
+    return distribution(generator);
 }
 
 class Range {

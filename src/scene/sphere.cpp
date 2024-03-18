@@ -1,4 +1,4 @@
-#include "hittable/sphere.hpp"
+#include "scene/sphere.hpp"
 
 namespace raytrc {
 bool Sphere::hit(const Ray &ray, const Range &hitRange, HitResult &res) const 

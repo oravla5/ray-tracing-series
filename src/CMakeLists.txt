@@ -1,6 +1,6 @@
 include_directories(include)
 add_subdirectory(base)
-add_subdirectory(hittable)
+add_subdirectory(scene)
 
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} rayBaseLib rayHittableLib)
+target_link_libraries(${PROJECT_NAME} rayBaseLib raySceneLib)

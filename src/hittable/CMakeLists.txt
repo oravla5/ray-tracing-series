@@ -1,1 +1,0 @@
-add_library(rayHittableLib sphere.cpp hittable_list.cpp)

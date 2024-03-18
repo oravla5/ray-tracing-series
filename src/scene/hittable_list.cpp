@@ -1,4 +1,4 @@
-#include "hittable/hittable_list.hpp"
+#include "scene/hittable_list.hpp"
 
 namespace raytrc {
 
